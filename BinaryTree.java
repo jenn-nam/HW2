@@ -261,16 +261,16 @@ public class BinaryTree {
 
     private int findMinHelper(Node node) {
 
-        //As stated above, if node is null, return 'Integer.MAX_VALUE'. 
+        //As stated above, if a node is null, return 'Integer.MAX_VALUE'. 
         if (node == null) {
         return Integer.MAX_VALUE;
         }
         /*
          * this will examine the subtrees of the current node from its left subtree to its right subtree,
-         * finally, it will then calculate the minimum value out of the current node, its left subtree, and right subtree
+         * finally, it will then calculate the minimum value out of the current node, its left subtree, and right subtree.
          */
         int min_value = Math.min(node.data, Math.min(findMinHelper(node.left), findMinHelper(node.right))); 
-
+        // once the tree is traversed, minimum value will be returned. 
         return min_value; 
     }
 
@@ -294,9 +294,20 @@ public class BinaryTree {
         // BINARY TREE (WHICH IS BASED ON RECURSION)
 
         // return -1; // RECALL, IF TREE IS EMPTY, RETURN -1
+        if (node == null) {
+        return 0;
+        }
 
+        // look at left subtree.
+        int leftTree = nodesGTHelper(node.left, val);
+        int rightTree = nodesGTHelper(node.right, val);
 
-        return -1;
+        // look at node. 
+        int nodeCount = (node.data > val) ? 1: 0; 
+
+        // calculate the # of nodes > than a given val. 
+        return leftTree + rightTree + nodeCount; 
+
     }
 
 
@@ -335,6 +346,10 @@ public class BinaryTree {
         // COUNT LOCATIONS IN THE RETURNED ARRAY AS SHOWN BELOW, ELSE
         // THE 'SUM' IS RETURNED IN INDEX LOCATION 0, AND COUNT IS LOCATION 1
 
+        if(node==null) { 
         return new int[]{0, 0};
+        }
+        
+
     }
 }
