@@ -1,6 +1,6 @@
 
 /*
- * *** PLACE YOUR NAME / SECTION HERE ***
+ * *** Jennifer Nambo / 002 ***
  *
  * Homework # 2 (Programming Assignment). This Java class defines a few basic
  * manipulation operations of a binary trees.
@@ -9,8 +9,8 @@
  *
  */
 
-import java.util.Queue;
 import java.util.LinkedList;
+import java.util.Queue;
 
 /*
  * Class BinaryTree
@@ -220,10 +220,27 @@ public class BinaryTree {
      *
      */
 
-    private void replaceValueHelper(Node node, int oldVal, int newVal) {
 
-        // ADD YOUR CODE HERE -- USE DEPTH FIRST SEARCH OF
-        // BINARY TREE (WHICH IS BASED ON RECURSION)
+     //This method will use pre-order traversing in order to relace the values when applicable. 
+
+    private void replaceValueHelper(Node node, int oldVal, int newVal) {
+        // Check if node is null. 
+        if (node == null) {
+            //Stop if node is null. 
+            return; 
+        }
+        // Check if current node's val matches val to be replaced.
+        if(node.data == oldVal) {
+            // If node data matches, then replace that val with the desired val.
+            node.data = newVal; 
+        }
+
+        //continue traversing. 
+        //First, left subtree.
+        replaceValueHelper(node.left, oldVal, newVal);
+        // After left subtree is processed, then right subtree. 
+        replaceValueHelper(node.right, oldVal, newVal); 
+
 
     }
 
@@ -244,10 +261,17 @@ public class BinaryTree {
 
     private int findMinHelper(Node node) {
 
-        // ADD YOUR CODE HERE -- USE DEPTH FIRST SEARCH OF
-        // BINARY TREE (WHICH IS BASED ON RECURSION)
-
+        //As stated above, if node is null, return 'Integer.MAX_VALUE'. 
+        if (node == null) {
         return Integer.MAX_VALUE;
+        }
+        /*
+         * this will examine the subtrees of the current node from its left subtree to its right subtree,
+         * finally, it will then calculate the minimum value out of the current node, its left subtree, and right subtree
+         */
+        int min_value = Math.min(node.data, Math.min(findMinHelper(node.left), findMinHelper(node.right))); 
+
+        return min_value; 
     }
 
 
