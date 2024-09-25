@@ -346,10 +346,25 @@ public class BinaryTree {
         // COUNT LOCATIONS IN THE RETURNED ARRAY AS SHOWN BELOW, ELSE
         // THE 'SUM' IS RETURNED IN INDEX LOCATION 0, AND COUNT IS LOCATION 1
 
-        if(node==null) { 
+       //if tree is empty "return 0 for both sum and count"
+       if (n == null) {
         return new int[]{0, 0};
-        }
-        
+       }
+       //look at left subtree and find sum and count 
+       int [] treeLeft = averageHelper(n.left);
+       //look at right subtree and find sum and count
+       int [] treeRight = averageHelper(n.right);
+
+       //now calculate sum and count of current node
+       int sum = treeLeft[0] + treeRight[0] +n.data; 
+       int count = treeLeft[1] + treeRight[1] + 1; 
+
+       //return values for sum and count
+       return new int[]{sum, count};
+
+
+            
+
 
     }
 }
